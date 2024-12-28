@@ -1,0 +1,143 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #e0e0e0; /* Light grey text */
+}
+.Main-page{
+    display: none;
+}
+.Log_in-page{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Sign_in-page{
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.forget_password-page{
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.id_code_section_forget-page{
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.id_code_section-page{
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.Account{
+    display: none;
+}
+.Landing-page{
+    display: none;
+}
+
+.container {
+    background-color: #1f1f1f; /* Dark container background */
+    padding: 20px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1E90FF; /* Blue for title */
+    font-size: 2em;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #555; /* Dark border */
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+    background-color: #333; /* Dark input background */
+    color: #e0e0e0; /* Light text inside inputs */
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: #1E90FF; /* Blue focus border */
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1E90FF; /* Blue button background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4682B4; /* Darker blue on hover */
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #888; /* Light grey for links */
+    font-size: 0.9em;
+}
+
+a:hover {
+    color: #1E90FF; /* Blue color on hover */
+}
+
+.registrationForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.succes {
+    color: #32CD32; /* Green success text */
+    display: none;
+}
+
+.secret {
+    display: none;
+}
+
+.error {
+    color: #FF4500; /* Orange-red for error text */
+    display: none;
+}
+.Main-page{
+    display: none;
+}

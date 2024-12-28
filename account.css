@@ -1,0 +1,201 @@
+.Log_in-page{
+    display: none;
+}
+.Sign_in-page{
+    display: none;
+}
+.forget_password-page{
+    display: none;
+}
+.id_code_section_forget-page{
+    display: none;
+}
+.id_code_section-page{
+    display: none;
+}
+.Landing-page{
+    display: none;
+}
+.Main-page{
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.Account{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.profile-wrapper {
+    max-width: 500px;
+    width: 100%;
+    padding: 30px;
+}
+
+.profile-card {
+    background: #1f1f1f;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    text-align: center;
+    padding: 30px;
+}
+
+.profile-header {
+    margin-bottom: 30px;
+}
+
+.profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #1E90FF;
+}
+
+.profile-name {
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.profile-email {
+    font-size: 1.1rem;
+    color: #aaa;
+}
+
+.profile-details {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.detail {
+    margin-bottom: 20px;
+}
+
+.detail h3 {
+    font-size: 1.3rem;
+    color: #1E90FF;
+    margin-bottom: 10px;
+}
+
+.detail p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+.edit-button {
+    background-color: #1E90FF;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.edit-button:hover {
+    background-color: #4682B4;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #1f1f1f;
+    border-radius: 12px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    margin-bottom: 30px;
+    color: #1E90FF;
+    font-size: 1.8rem;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #e0e0e0;
+    font-size: 1.1rem;
+}
+
+.modal-content input, 
+.modal-content textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.save-button {
+    background-color: #1E90FF;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.save-button:hover {
+    background-color: #4682B4;
+}
+
+.cancel-button {
+    background-color: #444;
+    color: #e0e0e0;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.cancel-button:hover {
+    background-color: #555;
+}
+  

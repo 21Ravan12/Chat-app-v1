@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosyal Medya Platformu - Ana Sayfa</title>
+    <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+    <link id="main-page" rel="stylesheet" href="main-page.css">
+    <link id="log-in" rel="stylesheet" href="loginsignin.css">
+    <link id="landing-page" rel="stylesheet" href="landing-page.css">
+    <link id="account" rel="stylesheet" href="account.css">
+</head>
+<body>
+
+<div class="Main-page">
+    <header class="navbar">
+        <div class="logo">
+            <h1>SosyalPlatform</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="#about">Hakkında</a>
+            <a href="#features">Özellikler</a>
+            <a href="#signup">Kaydol</a>
+            <a onclick="MainToLogin()" class="login-btn">Giriş Yap</a>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-text">
+            <h2>Hayatını Paylaş, Dünyayı Keşfet</h2>
+            <p>Yeni arkadaşlar edinin, içerik paylaşın ve dünya çapında etkileşimde bulunun. Anında bağlantı kurun!</p>
+            <a href="#signup" class="cta-btn">Kaydol ve Başla</a>
+        </div>
+        <div class="hero-image">
+            <img src="hero-image.jpg" alt="Sosyal Platform Görseli">
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>Hakkında</h2>
+        <p>SosyalPlatform, insanların bir araya gelip hikayelerini paylaşabildikleri, fotoğraf ve video gönderileriyle etkileşime girebildikleri, anında mesajlaşabilecekleri bir yer. Hep birlikte keşfetmeye başlayın!</p>
+    </section>
+
+    <section id="features" class="features-section">
+        <h2>Öne Çıkan Özellikler</h2>
+        <div class="prominent-features-sec-two">
+            <div class="feature">
+                <h3>Gerçek Zamanlı Mesajlaşma</h3>
+                <p>Sevdiklerinizle anında iletişim kurun, bir sohbeti hiç beklemeden başlatın!</p>
+            </div>
+            <div class="feature">
+                <h3>Hikaye Paylaşımı</h3>
+                <p>Fotoğraflar, videolar ve metinlerle kendinizi ifade edin.</p>
+            </div>
+            <div class="feature">
+                <h3>Takip Et ve Takipçi Kazan</h3>
+                <p>Diğer kullanıcıları takip edin, yeni arkadaşlar edin ve onların içeriklerini keşfedin.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="signup" class="signup-section">
+        <h2>Hemen Kaydolun!</h2>
+        <p>Hızlıca bir hesap oluşturun ve içerik paylaşmaya başlayın!</p>
+        <a onclick="MainToSignin()" class="cta-btn">Kaydol</a>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 SosyalPlatform - Tüm Hakları Saklıdır.</p>
+    </footer>
+</div>
+
+<div class="Log_in-page">
+    <div class="container">
+        <h1>Login</h1>
+        <h2 class="error"></h2>
+        <div class="registrationForm">
+            <form id="Log_in-form">
+                <input type="email" id="email" name="email" placeholder="Email" required><br>
+                <input type="password" id="password" name="password" placeholder="Password" required><br>
+                <button type="submit">Log in</button>
+                <a onclick="LoginToForgetpassword()" class="secret">Forget your password?</a>
+                <a onclick="LoginToSignin()" >Or, sign up</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="Sign_in-page">
+    <div class="container">
+        <h1>Sign up</h1>
+        <div class="registrationForm">
+            <h2 class="succes"></h2>
+            <form id="Sign_in-form">
+                <input type="text" id="name" name="name" placeholder="Username" required><br>
+                <input type="email" id="email" name="email" placeholder="Email" required><br>
+                <input type="password" id="password" name="password" placeholder="Password" required><br>
+                <input type="text" id="bio" name="bio" placeholder="Bio" required><br>
+                <input type="number" id="birthyear" name="birthyear" placeholder="Birth Year" required><br>
+                <button type="submit">Sign up</button>
+                <a href="forget_password.html" class="secret">Forget your password?</a>
+                <a onclick="SigninToLogin()">Or, log in</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="forget_password-page">
+    <div class="container">
+        <h1>Account</h1>
+        <h2 class="error"></h2>
+        <div class="registrationForm">
+            <form id="forget_password">
+                <input type="email" id="email" name="email" placeholder="Email" required><br>
+                <button type="submit">Send code</button>
+                <a onclick="ForgetpasswordToLogin()">Or, Log in</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="id_code_section_forget-page">
+    <div class="container">
+        <h1>Insert the code</h1>
+        <div class="registrationForm">
+            <h2 class="error"></h2>
+            <form id="forget-code-Form">
+                <input type="text" id="code" name="code" placeholder="Code" required><br>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="id_code_section-page">
+    <div class="container">
+        <h1>Insert the code</h1>
+        <div class="registrationForm">
+            <h2 class="error"></h2>
+            <form id="enter-code-Form">
+                <input type="text" id="code" name="code" placeholder="Code" required><br>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="Landing-page">
+    <header>
+        <div style="flex-grow: 1; margin-left: 10px;">
+            <h1>Social Feed</h1>
+        </div>
+        <div class="profile-btn">
+            <img src="https://via.placeholder.com/40" alt="Profile Picture" id="profileImage" onclick="LandingToAccount()">
+        </div>
+        <button class="settings-btn">⚙</button>
+    </header>
+
+    <div class="main-container">
+        <div class="left-container">
+        <div class="user-list-1">
+            <button class="add-user-btn" onclick="toggleAddUser()">Arkadaş Ekle</button>
+            <div class="add-user-container" id="add-user-container">
+                <form id="addFriendForm">
+                <input placeholder="Kullanıcı adı girin..." type="friend" id="friend" name="friend">
+                <button class="settings-btn" type="submit">Ekle</button>
+                </form>
+            </div> 
+        </div>
+        <div class="user-list">
+
+        </div>
+        </div>   
+        
+        <!-- Chat Section -->
+        <div class="chat-container" id="chat-container">
+            <div class="chat-box" id="chat-box"></div>
+            <div class="input-container">
+                <input type="text" id="message-input" placeholder="Type your message...">
+                <button onclick="sendPrivateMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="Account">
+    <div class="profile-wrapper">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img id="profileImageAccount" class="profile-image" src="https://via.placeholder.com/150" alt="Profile Image">
+                <h1 id="nameAccount" class="profile-name">John Doe</h1>
+                <p id="emailAccount" class="profile-email">Email: johndoe@example.com</p>
+            </div>
+
+            <div class="profile-details">
+                <div class="detail">
+                    <h3>Bio</h3>
+                    <p id="bioAccount">A passionate developer who loves coding and coffee.</p>
+                </div>
+                <div class="detail">
+                    <h3>Age</h3>
+                    <p id="age">25</p>
+                </div>
+            </div>
+
+            <button class="edit-button" id="editProfileButton">Edit Profile</button>
+        </div>
+    </div>
+
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h2>Edit Your Profile</h2>
+            <label for="updateName">Name:</label>
+            <input id="updateName" type="text" placeholder="Enter your name">
+    
+            <label for="updateBio">Bio:</label>
+            <textarea id="updateBio" placeholder="Tell something about yourself"></textarea>
+    
+            <label for="updateAge">Age:</label>
+            <input id="updateAge" type="number" placeholder="Enter your age">
+    
+            <input type="file" id="updateImage" accept="image/*">
+            <input type="hidden" id="profileImageBase64">
+            <img id="profileImagePreview" src="" alt="Image Preview" style="max-width: 150px;">
+
+            <div class="modal-buttons">
+                <button id="saveChangesButton" class="save-button">Save Changes</button>
+                <button id="closeModalButton" class="cancel-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    document.getElementById('log-in').disabled=true;
+    document.getElementById('landing-page').disabled=true;
+    document.getElementById('account').disabled=true;
+    
+    function MainToLogin(){
+        sessionStorage.setItem('location','login');
+        document.getElementById('main-page').disabled=true; 
+        document.getElementById('log-in').disabled=false;
+    }
+    
+    function MainToSignin(){
+        sessionStorage.setItem('location','signin');
+        document.getElementById('main-page').disabled=true; 
+        document.getElementById('log-in').disabled=false;
+        document.querySelector('.Log_in-page').style.display='none';
+        document.querySelector('.Sign_in-page').style.display='flex';
+    }
+    
+    function LoginToSignin(){
+        sessionStorage.setItem('location','signin');
+        document.querySelector('.Log_in-page').style.display='none';
+        document.querySelector('.Sign_in-page').style.display='flex';
+    }
+    
+    function SigninToLogin(){
+        sessionStorage.setItem('location','login');
+        document.querySelector('.Log_in-page').style.display='flex';
+        document.querySelector('.Sign_in-page').style.display='none';
+    }
+    
+    function LoginToForgetpassword(){
+        document.querySelector('.Log_in-page').style.display='none';
+        document.querySelector('.forget_password-page').style.display='flex';
+    }
+    
+    function ForgetpasswordToLogin(){
+        document.querySelector('.Log_in-page').style.display='flex';
+        document.querySelector('.forget_password-page').style.display='none';
+    }
+    
+    function ToForgetCode(){
+        document.querySelector('.forget_password-page').style.display='none';
+        document.querySelector('.id_code_section_forget-page').style.display='flex';
+    }
+    
+    function ToEnterCode(){
+        document.querySelector('.Sign_in-page').style.display='none';
+        document.querySelector('.id_code_section-page').style.display='flex';
+    }
+    
+    function ToLandingPage(){
+        sessionStorage.setItem('location','landing');
+        document.querySelector('.Log_in-page').style.display='none';
+        document.querySelector('.id_code_section_forget-page').style.display='none';
+        document.querySelector('.id_code_section-page').style.display='none';
+        document.getElementById('log-in').disabled=true;
+        alert(sessionStorage.getItem('email'));
+        fetchProfileData(sessionStorage.getItem('email'));
+        fetchFriendsData(sessionStorage.getItem('email'),true);
+        document.getElementById('landing-page').disabled=false;
+    }
+    
+    function AccountToLanding(){
+        sessionStorage.setItem('location','landing');
+        document.getElementById('landing-page').disabled=true;
+        document.getElementById('account').disabled=false;
+    }
+    
+    function LandingToAccount(){
+        sessionStorage.setItem('location','account');
+        document.getElementById('landing-page').disabled=true;
+        document.getElementById('account').disabled=false;
+        fetchProfileDataAccount();
+    }
+    
+    try {
+    let location=sessionStorage.getItem('location');
+    if (location==='login') {
+        document.getElementById('log-in').disabled=false;
+        document.getElementById('main-page').disabled=true; 
+    }else if(location==='signin'){
+        document.getElementById('log-in').disabled=false;
+        document.getElementById('main-page').disabled=true; 
+        document.querySelector('.Log_in-page').style.display='none';
+        document.querySelector('.Sign_in-page').style.display='flex';
+    }else if(location==='landing'){
+        document.getElementById('main-page').disabled=true; 
+        document.getElementById('landing-page').disabled=false;
+        fetchProfileData(sessionStorage.getItem('email'));
+    }else if(location==='account'){
+        document.getElementById('main-page').disabled=true; 
+        document.getElementById('account').disabled=false;
+    }       
+    }catch{}
+
+
+
+
+    document.getElementById("Log_in-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            sessionStorage.setItem('email',formData.get('email'));
+            const data = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+
+            fetch("http://127.0.0.1:3001/api-login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                
+                if (data.message == "Login successful!") {
+                    ToLandingPage();
+                }else{
+                    document.querySelector('.error').textContent = data.message;
+                    document.querySelector('.error').style.display = "block";
+                    document.querySelector('.secret').style.display = "block";
+                }
+                
+
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred: " + error);
+            });
+        });
+
+    document.getElementById("forget_password").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            sessionStorage.setItem('email',formData.get('email'));
+            const data = {
+                email: formData.get('email')
+            };
+
+            fetch("http://127.0.0.1:3001/api-forget", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                
+                if (data.message == "Password recovery code sent successfully!") {
+                    ToForgetCode();
+                }else{
+                    document.querySelector('.error').textContent = data.message;
+                    document.querySelector('.error').style.display = "block";
+                   
+                }
+                
+
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred: " + error);
+            });
+        });
+
+    document.getElementById("forget-code-Form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const data = {
+                code: formData.get('code'),
+            };
+
+            fetch("http://127.0.0.1:3001/api-forget-end", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+               
+                if (data.message == "Code successfully verified!") {
+                    ToLandingPage();
+                }else{
+                    document.querySelector('.error').textContent = data.message;
+                    document.querySelector('.error').style.display = "block";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Error!");
+            });
+        });
+
+    document.getElementById("Sign_in-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.querySelector('.succes').style.color = "green";
+            document.querySelector('.succes').textContent = 'Wait a minut....';
+            document.querySelector('.succes').style.display = "block";
+
+            const formData = new FormData(event.target);
+            sessionStorage.setItem('email',formData.get('email'));
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                password: formData.get('password'),
+                bio: formData.get('bio'),
+                birthyear: formData.get('birthyear')
+            };
+
+            fetch("http://127.0.0.1:3001/api-enter", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message == "Verification code sent successfully!") {
+                    ToEnterCode();
+                }
+                document.querySelector('.succes').textContent = data.error;
+                document.querySelector('.succes').style.color = "red";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Error!");
+            });
+        });
+
+    document.getElementById("enter-code-Form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const data = {
+                code: formData.get('code'),
+            };
+
+            fetch("http://127.0.0.1:3001/api-enter-end", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+               
+                if (data.message == "User successfully signed up!") {
+                    ToLandingPage();
+                }else{
+                    document.querySelector('.error').textContent = data.message;
+                    document.querySelector('.error').style.display = "block";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Error!");
+            });
+        });
+
+
+
+
+async function fetchProfileData(email,Allow=true) {
+    try {
+        if (Allow) {
+        const savedProfileData = sessionStorage.getItem('profileData');
+        if (savedProfileData) {
+            console.log("Profile data loaded from sessionStorage.");
+            const data = JSON.parse(savedProfileData);
+            updateProfileUI(data);
+            return; 
+        }
+        }
+        const response = await fetch('http://localhost:3001/api-profile-get', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+
+        // Check if data contains profileImage and name, then update UI
+        updateProfileUI(data);
+
+        // Store the profile data in sessionStorage
+        sessionStorage.setItem('profileData', JSON.stringify(data));
+
+    } catch (error) {
+        console.error('Error fetching profile data:', error);
+        document.getElementById('errorMessage').textContent = 'Failed to load profile data. Please try again later.';
+    }
+}
+
+function updateProfileUI(data) {
+    if (data.profileImage) {
+        const profileImageElement = document.getElementById('profileImage');
+        if (profileImageElement) {
+            profileImageElement.src = data.profileImage;
+            sessionStorage.setItem('username',data.name);
+        }
+    }
+
+    // Update the username if it exists
+    
+}
+
+window.addEventListener('load', () => {
+    const savedProfileData = sessionStorage.getItem('profileData');
+    if (savedProfileData) {
+        const data = JSON.parse(savedProfileData);
+        updateProfileUI(data);
+    }
+});
+
+
+async function fetchFriendsData(email,Allow) {
+    try {
+        if (Allow) {
+        const savedProfileData = sessionStorage.getItem('friendsData');
+        if (savedProfileData) {
+            console.log("Friends data loaded from sessionStorage.");
+            const data = JSON.parse(savedProfileData);
+            updateFriends(data);
+            return; 
+        }
+        }
+
+        const response = await fetch('http://localhost:3001/api-friends-get', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+
+        updateFriends(data);
+
+        sessionStorage.setItem('friendsData', JSON.stringify(data));
+
+    } catch (error) {
+        console.error('Error fetching profile data:', error);
+        document.getElementById('errorMessage').textContent = 'Failed to load profile data. Please try again later.';
+    }
+}
+
+function updateFriends(data) {
+    if (data.friends) {
+                const user_list = document.querySelector('.user-list')
+                user_list.innerHTML='';
+                let count=data.friends.length;
+                for (let index = 0; index < count; index++) {
+                const user_list = document.querySelector('.user-list')
+                const activityDiv = document.createElement('div');
+                activityDiv.textContent = data.friends[index];
+                activityDiv.setAttribute('data-value',data.friends[index]);
+                activityDiv.className='user';
+                user_list.appendChild(activityDiv);    
+                }
+                
+            } else {
+                console.error('Username not found in profile data.');
+            }
+    
+}
+
+window.addEventListener('load', () => {
+    const savedFriendsData = sessionStorage.getItem('friendsData');
+    if (savedFriendsData) {
+        const data = JSON.parse(savedFriendsData);
+        updateFriends(data);
+    }
+});
+ 
+    // Handle the user addition form
+document.getElementById("addFriendForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const data = {
+            friend: formData.get('friend'),
+            email: sessionStorage.getItem('email'),
+        };
+
+        fetch("http://127.0.0.1:3001/api-friend-add", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === "Friend added successfully!") {
+                fetchFriendsData(sessionStorage.getItem('email'),false);
+          
+            } else {
+                alert("Failed to add friend");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred: " + error.message);
+        });
+    });
+
+document.querySelector('.user-list').addEventListener('click', async (event) => {
+  if (event.target.classList.contains('user')) {
+    const toUsername = event.target.innerText; // yok amk yok la yok
+    const fromUsername = sessionStorage.getItem('username'); // Aktif kullanıcı (gönderen)
+
+    // Eğer fromUsername mevcut değilse, işlem yapılmasın
+    if (!fromUsername) {
+      console.error('Gönderen kullanıcı bulunamadı.');
+      return;
+    }
+
+    sessionStorage.setItem('recipient', toUsername); // Alıcıyı sessionStorage'da sakla
+
+    const container = document.getElementById('chat-container');
+
+    if (!document.getElementById(`chatbox-${toUsername}`)) {
+        const userChat = document.createElement('div');
+        userChat.classList.add('chat-box');
+        userChat.id = `chatbox-${toUsername}`;
+        userChat.style.display = 'none'; // Başlangıçta gizli
+        container.prepend(userChat);
+      }
+
+    const chatBox = document.getElementById(`chatbox-${toUsername}`);
+
+    // Loading indicator
+    const loadingMessage = document.createElement('div');
+    loadingMessage.textContent = 'Loading messages...';
+    chatBox.appendChild(loadingMessage);
+
+    try {
+      // API'ye fromUsername ve toUsername ile birlikte mesajları almasını söylüyoruz
+      const response = await fetch('http://127.0.0.1:3001/api-chat-get', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ sender: fromUsername, receiver: toUsername }), // Sender ve receiver bilgilerini gönderiyoruz
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Server response:', result);
+
+        // Clear the loading message
+        chatBox.innerHTML = '';
+
+        if (result.length === 0) {
+          const noMessagesDiv = document.createElement('div');
+          noMessagesDiv.textContent = 'No messages yet.';
+          chatBox.appendChild(noMessagesDiv);
+        } else {
+          // Mesajları ekrana yazdırma
+          result.forEach((message) => {
+            const activityDiv = document.createElement('div');
+            activityDiv.classList.add(message.from === fromUsername ? 'my-message' : 'other-message');
+            
+            activityDiv.innerHTML = `<p><strong>${message.from}:</strong> ${message.message}</p>`;
+
+            chatBox.appendChild(activityDiv);
+          });
+        }
+      } else {
+        console.error('Error occurred:', response.status);
+        showErrorMessage('An error occurred while fetching messages. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error connecting to the server:', error);
+      showErrorMessage('An error occurred while connecting to the server.');
+    } finally {
+      // Remove loading message if it still exists
+      if (chatBox.contains(loadingMessage)) {
+        chatBox.removeChild(loadingMessage);
+      }
+    }
+  }
+});
+
+// Utility function to show error message in UI
+function showErrorMessage(message) {
+  const chatBox = document.getElementById('chat-box');
+  const errorMessage = document.createElement('div');
+  errorMessage.classList.add('error-message');
+  errorMessage.textContent = message;
+  chatBox.appendChild(errorMessage);
+}
+   
+function toggleAddUser() {
+        const container = document.getElementById('add-user-container');
+        container.style.display = container.style.display === 'none' || container.style.display === '' ? 'block' : 'none';
+    }
+
+
+
+function fetchProfileDataAccount() {
+    try {
+        
+        const savedProfileData = sessionStorage.getItem('profileData');
+        if (savedProfileData) {
+        const data = JSON.parse(savedProfileData);
+    
+        if (data.profileImage) {
+            document.getElementById('profileImageAccount').src = data.profileImage;
+        }
+        alert(data.name);
+        document.getElementById('nameAccount').innerHTML = data.name;
+        document.getElementById('emailAccount').textContent = "Email: " + data.email;
+        document.getElementById('bioAccount').textContent = data.bio;
+        document.getElementById('age').textContent = data.age;
+    }
+    } catch (error) {
+        console.error('Error fetching profile data:', error);
+    }
+}
+
+function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onloadend = function () {
+            document.getElementById('profileImagePreview').src = reader.result;
+            document.getElementById('profileImageBase64').value = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
+async function saveProfileData() {
+    const name = document.getElementById('updateName').value;
+    const bio = document.getElementById('updateBio').value;
+    const age = document.getElementById('updateAge').value;
+    const profileImageBase64 = document.getElementById('profileImageBase64').value;
+    const email = sessionStorage.getItem('email');
+    
+    try {
+        const response = await fetch('http://localhost:3001/api-profile-save', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email, name, bio, age, profileImage: profileImageBase64 })
+        });
+
+        const data = await response.json();
+        alert(data.message);
+        fetchProfileData(sessionStorage.getItem('email'),false);
+    } catch (error) {
+        console.error('Error saving profile data:', error);
+    }
+}
+
+if (sessionStorage.getItem('location')==='account') {
+    fetchProfileData(sessionStorage.getItem('email'),false);
+    fetchProfileDataAccount();
+}
+
+document.getElementById('editProfileButton').addEventListener('click', () => {
+    document.getElementById('editModal').style.display = 'flex';
+});
+
+document.getElementById('closeModalButton').addEventListener('click', () => {
+    document.getElementById('editModal').style.display = 'none';
+});
+
+document.getElementById('saveChangesButton').addEventListener('click', saveProfileData);
+
+document.getElementById('updateImage').addEventListener('change', handleFileUpload);
+
+
+if (sessionStorage.getItem('location')==='landing') {
+
+// Socket.io bağlantısını başlatıyoruz
+const socket = io('http://localhost:3002'); // Server'ın adresi
+
+// Kullanıcı adı ve alıcı bilgisi
+let username = sessionStorage.getItem('username') || ''; // Default to empty if not found
+let recipient = sessionStorage.getItem('recipient') || ''; // Default to empty if not found
+
+// Kullanıcı adı girildikten sonra chat'e katıl
+if (username) {
+  socket.emit('join', username);
+} else {
+  console.log("Username is missing. Please log in first.");
+}
+
+// Mesaj gönderme işlemi
+function sendPrivateMessage() {
+  const messageInput = document.getElementById('message-input');
+  const message = messageInput.value;
+  if (recipient && message) {
+    socket.emit('private message', { toUsername: recipient, message }, (response) => {
+      console.log(response.message); // Mesaj durumu
+    });
+
+    // Gönderilen mesajı ekrana ekle
+    appendMessage(recipient, { from: username, message }, true); // Gönderen kullanıcı
+    messageInput.value = ''; // Mesaj kutusunu temizle
+  }
+}
+
+// Gelen mesajları gösterme
+socket.on('chat message', (messageData) => {
+  appendMessage(messageData.from, messageData, false); // Gelen mesaj
+});
+
+// Mesajları ekrana eklemek
+function appendMessage(chatUser, messageData, isMyMessage) {
+  // Hedef kullanıcının chatbox'unu bul
+  const chatBox = document.getElementById(`chatbox-${chatUser}`);
+  
+  if (chatBox) {
+    // Mesaj için bir kapsayıcı oluştur
+    const messageElement = document.createElement('div');
+    messageElement.classList.add(isMyMessage ? 'my-message' : 'other-message');
+
+    // Mesaj içeriğini ayarla
+    messageElement.innerHTML = `
+      <p><strong>${messageData.from}:</strong> ${messageData.message}</p>
+    `;
+
+    // Mesajı ekrana ekle
+    chatBox.appendChild(messageElement);
+    chatBox.scrollTop = chatBox.scrollHeight; // Son mesaja kaydır
+  }
+}
+
+// Kullanıcı listesine güncelleme yapmak
+socket.on('update users', (users) => {
+  const userList = document.querySelector('.user-list');
+  const container = document.getElementById('chat-container');
+  userList.innerHTML = ''; // Listeyi temizle
+
+  users.forEach((user) => {
+    if (user !== username) {
+      // Kullanıcı listesi elemanı oluştur
+      const userItem = document.createElement('div');
+      userItem.classList.add('user');
+      userItem.textContent = user;
+      userItem.onclick = () => selectRecipient(user); // Kullanıcıyı tıklayınca alıcıyı seç
+      userList.appendChild(userItem);
+
+      // Kullanıcıya özel chatbox oluştur
+      if (!document.getElementById(`chatbox-${user}`)) {
+        const userChat = document.createElement('div');
+        userChat.classList.add('chat-box');
+        userChat.id = `chatbox-${user}`;
+        userChat.style.display = 'none'; // Başlangıçta gizli
+        container.prepend(userChat);
+      }
+    }
+  });
+});
+
+// Kullanıcıyı seçme
+function selectRecipient(user) {
+  recipient = user;
+  sessionStorage.setItem('recipient', user);
+
+  // Tüm chatbox'ları gizle
+  document.querySelectorAll('.chat-box').forEach((chatbox) => {
+    chatbox.style.display = 'none';
+  });
+
+  // Seçilen kullanıcının chatbox'unu göster
+  const selectedChatbox = document.getElementById(`chatbox-${user}`);
+  if (selectedChatbox) {
+    selectedChatbox.style.display = 'flex';
+  }
+}
+
+// Kullanıcı ekleme
+document.getElementById('addFriendForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const friendUsername = document.getElementById('friend').value;
+  if (friendUsername) {
+    socket.emit('private message', { toUsername: friendUsername, message: 'Hi, let\'s chat!' }, (response) => {
+      console.log(response.message);
+    });
+  }
+});
+
+}
+
+
+</script>
+
+</body>
+</html>
