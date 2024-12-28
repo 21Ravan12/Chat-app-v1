@@ -25,7 +25,3 @@ Real-Time Messaging: Socket.io
 Database: MongoDB
 
 
-
----
-
-Let me know if you need further refinements!
